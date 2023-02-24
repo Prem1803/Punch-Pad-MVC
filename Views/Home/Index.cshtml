@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("userName");
+}
+<div class="row index-div">
+    <div class="col-md-6">
+        <img src="~/images/Logo.JPG" alt="logo" width="100%"/>
+    </div>
+    <div class="text-center col-sm-12 col-md-6 index-text">
+        <p class="display-4">Welcome to</p>
+        <h5> PunchPad - Employee Attendance Portal</h5>
+        @if(@ViewBag.Data==null){
+            <a class="btn btn-color mt-2 btn-lg" asp-controller="Employee" asp-action="Login">Login</a>
+        }
+    </div>
+</div>
+

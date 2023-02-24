@@ -1,0 +1,93 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.PunchBox{
+  text-align: center;
+  padding: 1rem;
+}
+.PunchBox .Date{
+  text-align: center;
+  margin-bottom: 1rem;
+  border: none;
+  width: 100%;
+  background: none;
+  font-size: 24px;
+}
+.PunchBox .Time{
+  text-align: center;
+  margin-bottom: 1rem;
+  border: none;
+  width: 100%;
+  background: none;
+  font-weight: bold;
+  font-size: 36px;
+}
+a{
+  text-decoration: none;
+}
+
+.Date-Form{
+  margin: 2rem;
+  text-align: center;
+}
+.date-picker{
+  height: 37.6px;
+  padding: 1rem;
+}
+.date-search{
+  margin-top: -5px;
+}
+
+.div-center{
+  max-width: 500px;
+  margin: auto;
+}
+.index-div{
+  background-color: bisque;
+  border-radius: 2rem;
+}
+.index-text{
+  padding-top: 10%;
+}
+.index-div img{
+  border-radius: 1rem;
+  margin-left: -10px;
+}
+.index-div a{
+  width: 60%;
+}
+
+form .form-group{
+  margin-top: 0.8rem;
+}
+
+.btn-color,.btn-color:hover{
+  background-color: #0e1c36;
+  color: #fff;
+}
+
+.profile-image-pic{
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.cardbody-color{
+  background-color: bisque;
+}

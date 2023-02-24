@@ -1,0 +1,28 @@
+
+@{
+}
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<ul class="navbar-nav">
+    @{
+        ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("userName");
+        ViewBag.IsManager = @HttpContextAccessor.HttpContext.Session.GetString("isManager");
+    }
+    @if (ViewBag.Data != null)
+    {
+        <li class="nav-item">
+            <a id="punch" class="nav-link text-dark" asp-controller="Attendance" asp-action="Punch" >Punch In/Out</a>
+        </li>
+        <li class="nav-item">
+            <a id="DailyAttendance" class="nav-link text-dark" asp-controller="Attendance" asp-action="DailyAttendance" >Daily Attendance</a>
+        </li>
+        if(ViewBag.IsManager!=null)
+        {
+            <li class="nav-item">
+                <a id="ManageTeamAttendance" class="nav-link text-dark" asp-controller="Attendance" asp-action="ManageTeamAttendance" >Team Attendance</a>
+            </li>
+        }
+    }
+    
+</ul>

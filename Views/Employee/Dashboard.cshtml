@@ -1,0 +1,67 @@
+@model PunchPad.Models.PremEmployee
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewBag.User = @HttpContextAccessor.HttpContext.Session.GetString("userId");
+}
+<div class=" div-center">
+        <div class="card">
+            <div class="card-body cardbody-color p-md-5">
+            @if(@ViewBag.User==@Model.Id.ToString()){
+                <h2 class="text-center text-dark">Profile</h2>
+            }else{
+                <h2 class="text-center text-dark">Employee Details</h2>
+            }
+            
+            <div class="text-center">
+                <img src="~/images/Logo.JPG" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"/>
+            </div>
+            <div class="mb-1 row">
+                <dt class = "col-sm-6">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class = "col-sm-6">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+            </div>
+                
+            <div class="mb-1 row">
+                <dt class = "col-sm-6">
+                    @Html.DisplayNameFor(model => model.Department)
+                </dt>
+                <dd class = "col-sm-6">
+                    @Html.DisplayFor(model => model.Department)
+                </dd>
+            </div>
+            <div class="mb-1 row">
+                <dt class = "col-sm-6">
+                    @Html.DisplayNameFor(model => model.Doj)
+                </dt>
+                <dd class = "col-sm-6">
+                    @Convert.ToDateTime(@Model.Doj).ToString("o").Substring(0,10)
+                </dd>
+            </div>
+            <div class="mb-1 row">
+                <dt class = "col-sm-6">
+                    @Html.DisplayNameFor(model => model.Username)
+                </dt>
+                <dd class = "col-sm-6">
+                    @Html.DisplayFor(model => model.Username)
+                </dd>
+            </div>
+            <div class="mb-1 row">
+                <dt class = "col-sm-6">
+                    Manager
+                </dt>
+                <dd class = "col-sm-6">
+                    @Html.DisplayFor(model => model.Manager.Name)
+                </dd>
+            </div>
+            @if(@ViewBag.User==@Model.Id.ToString()){
+                <a asp-controller="Employee" asp-action="EditProfile" class="btn btn-color px-5 mt-2 w-100" >Edit Profile</a>
+            }
+        </div>
+</div>
+

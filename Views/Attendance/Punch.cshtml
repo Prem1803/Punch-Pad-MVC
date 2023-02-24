@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("Punch");
+    @HttpContextAccessor.HttpContext.Session.SetString("Punch","");
+}
+<div class="PunchBox">
+    <input id="timer-date" disabled  class="Date"></input>
+    <input id="timer-time" disabled  class="Time"></input>
+    <p ><form><button asp-action="AddAttendance" type="submit" asp-route-id="In" class="btn btn-success">Punch In</button> <button asp-action="AddAttendance" type="submit" asp-route-id="Out" class="btn btn-danger">Punch Out</button></form></p>
+    <p ><a asp-action="DailyAttendance"  >Show Previous Punches</a> </p>
+    <p class="text-success">@ViewBag.Data</p>
+</div>
+
+
+<script>
+    var timerDate = document.getElementById('timer-date');
+    var timerTime = document.getElementById('timer-time');
+    var d= new Date();
+    timerDate.value=d.toDateString();
+    timerTime.value=d.toLocaleTimeString();
+
+    
+    function time(){
+        var d= new Date();
+        timerDate.value=d.toDateString();
+        timerTime.value=d.toLocaleTimeString();
+
+    }
+    setInterval(time,1000);
+</script>

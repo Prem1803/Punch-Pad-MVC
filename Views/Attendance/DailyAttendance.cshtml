@@ -1,0 +1,61 @@
+@model IEnumerable<PunchPad.Models.PremAttendance>
+@using System;
+@using System.Globalization;
+@{
+    ViewData["Title"] = "DailyAttendance";
+}
+
+<form class="Date-Form" id="date-picker-form" asp-action="DailyAttendance" method="post">
+    <input type ="date" id="date-picker" name="date" class="date-picker" value='@ViewBag.date.ToString("o").Substring(0,10)' />
+    <input type="submit" class="btn btn-primary date-search" value="Search Attendance"/>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.AttendanceTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttendanceType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttendanceStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.AttendanceTime)
+            </td>
+            <td>
+                @if(@item.AttendanceType=="In"){
+                <span class="text-success fw-bold">@Html.DisplayFor(modelItem => item.AttendanceType)</span>
+                }else{
+                <span class="text-danger fw-bold">@Html.DisplayFor(modelItem => item.AttendanceType)</span>
+                }
+            </td>
+            <td>
+                @if(@item.AttendanceStatus=="Approved"){
+                <span class="text-success fw-bold">@Html.DisplayFor(modelItem => item.AttendanceStatus)</span>
+                }else if(@item.AttendanceStatus=="Discarded"){
+                <span class="text-danger fw-bold">@Html.DisplayFor(modelItem => item.AttendanceStatus)</span>
+                }else {
+                <span class="text-warning fw-bold">@Html.DisplayFor(modelItem => item.AttendanceStatus)</span>
+                }
+            </td>
+            <td>
+                @if(@item.AttendanceStatus!="Approved"){
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.Id  }, new {@class="btn btn-danger"})
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
